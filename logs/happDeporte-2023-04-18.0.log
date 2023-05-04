@@ -1,0 +1,176 @@
+2023-04-18 16:41:07,527 DEBUG org.jboss.logging.LoggerProviders [background-preinit] Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+2023-04-18 16:41:07,529 INFO org.springframework.boot.StartupInfoLogger [main] Starting HappDeporteApplication using Java 17.0.4.1 on Optimus10 with PID 14916 (H:\Grapo DAM\8 Acceso a datos\AP\happDeporte\target\classes started by German in H:\Grapo DAM\8 Acceso a datos\AP\happDeporte)
+2023-04-18 16:41:07,532 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.5, Spring v5.3.23
+2023-04-18 16:41:07,533 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-04-18 16:41:09,235 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-04-18 16:41:09,236 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-04-18 16:41:09,237 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.68]
+2023-04-18 16:41:09,375 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-04-18 16:41:09,513 DEBUG com.zaxxer.hikari.HikariConfig [main] Driver class org.h2.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2a139a55
+2023-04-18 16:41:09,976 DEBUG com.zaxxer.hikari.HikariConfig [main] HikariPool-1 - configuration:
+2023-04-18 16:41:09,979 DEBUG com.zaxxer.hikari.HikariConfig [main] allowPoolSuspension................................false
+2023-04-18 16:41:09,980 DEBUG com.zaxxer.hikari.HikariConfig [main] autoCommit................................true
+2023-04-18 16:41:09,980 DEBUG com.zaxxer.hikari.HikariConfig [main] catalog................................none
+2023-04-18 16:41:09,981 DEBUG com.zaxxer.hikari.HikariConfig [main] connectionInitSql................................none
+2023-04-18 16:41:09,981 DEBUG com.zaxxer.hikari.HikariConfig [main] connectionTestQuery................................none
+2023-04-18 16:41:09,982 DEBUG com.zaxxer.hikari.HikariConfig [main] connectionTimeout................................30000
+2023-04-18 16:41:09,982 DEBUG com.zaxxer.hikari.HikariConfig [main] dataSource................................none
+2023-04-18 16:41:09,983 DEBUG com.zaxxer.hikari.HikariConfig [main] dataSourceClassName................................none
+2023-04-18 16:41:09,984 DEBUG com.zaxxer.hikari.HikariConfig [main] dataSourceJNDI................................none
+2023-04-18 16:41:09,985 DEBUG com.zaxxer.hikari.HikariConfig [main] dataSourceProperties................................{password=<masked>}
+2023-04-18 16:41:09,985 DEBUG com.zaxxer.hikari.HikariConfig [main] driverClassName................................"org.h2.Driver"
+2023-04-18 16:41:09,986 DEBUG com.zaxxer.hikari.HikariConfig [main] exceptionOverrideClassName................................none
+2023-04-18 16:41:09,986 DEBUG com.zaxxer.hikari.HikariConfig [main] healthCheckProperties................................{}
+2023-04-18 16:41:09,987 DEBUG com.zaxxer.hikari.HikariConfig [main] healthCheckRegistry................................none
+2023-04-18 16:41:09,987 DEBUG com.zaxxer.hikari.HikariConfig [main] idleTimeout................................600000
+2023-04-18 16:41:09,988 DEBUG com.zaxxer.hikari.HikariConfig [main] initializationFailTimeout................................1
+2023-04-18 16:41:09,988 DEBUG com.zaxxer.hikari.HikariConfig [main] isolateInternalQueries................................false
+2023-04-18 16:41:09,988 DEBUG com.zaxxer.hikari.HikariConfig [main] jdbcUrl................................jdbc:h2:file:H:/BBDD/happdeporte.db
+2023-04-18 16:41:09,989 DEBUG com.zaxxer.hikari.HikariConfig [main] keepaliveTime................................0
+2023-04-18 16:41:09,989 DEBUG com.zaxxer.hikari.HikariConfig [main] leakDetectionThreshold................................0
+2023-04-18 16:41:09,990 DEBUG com.zaxxer.hikari.HikariConfig [main] maxLifetime................................1800000
+2023-04-18 16:41:09,990 DEBUG com.zaxxer.hikari.HikariConfig [main] maximumPoolSize................................10
+2023-04-18 16:41:09,991 DEBUG com.zaxxer.hikari.HikariConfig [main] metricRegistry................................none
+2023-04-18 16:41:09,991 DEBUG com.zaxxer.hikari.HikariConfig [main] metricsTrackerFactory................................none
+2023-04-18 16:41:09,992 DEBUG com.zaxxer.hikari.HikariConfig [main] minimumIdle................................10
+2023-04-18 16:41:09,992 DEBUG com.zaxxer.hikari.HikariConfig [main] password................................<masked>
+2023-04-18 16:41:09,993 DEBUG com.zaxxer.hikari.HikariConfig [main] poolName................................"HikariPool-1"
+2023-04-18 16:41:09,993 DEBUG com.zaxxer.hikari.HikariConfig [main] readOnly................................false
+2023-04-18 16:41:09,993 DEBUG com.zaxxer.hikari.HikariConfig [main] registerMbeans................................false
+2023-04-18 16:41:09,994 DEBUG com.zaxxer.hikari.HikariConfig [main] scheduledExecutor................................none
+2023-04-18 16:41:09,994 DEBUG com.zaxxer.hikari.HikariConfig [main] schema................................none
+2023-04-18 16:41:09,994 DEBUG com.zaxxer.hikari.HikariConfig [main] threadFactory................................internal
+2023-04-18 16:41:09,995 DEBUG com.zaxxer.hikari.HikariConfig [main] transactionIsolation................................default
+2023-04-18 16:41:09,995 DEBUG com.zaxxer.hikari.HikariConfig [main] username................................"sa"
+2023-04-18 16:41:09,996 DEBUG com.zaxxer.hikari.HikariConfig [main] validationTimeout................................5000
+2023-04-18 16:41:09,996 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-04-18 16:41:10,321 DEBUG com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection conn0: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,323 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-04-18 16:41:10,427 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=1, active=0, idle=1, waiting=0)
+2023-04-18 16:41:10,429 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn1: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,430 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn2: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,431 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn3: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,433 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn4: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,435 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn5: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,436 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn6: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,438 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn7: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,440 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn8: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,441 DEBUG com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator [HikariPool-1 connection adder] HikariPool-1 - Added connection conn9: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA
+2023-04-18 16:41:10,441 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 connection adder] HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:41:11,727 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-18 16:41:12,190 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	c.s.h.c.ClothesController:
+	{DELETE [/clothes/{id}]}: deleteById(long)
+	{POST [/players/{playerId}/clothes]}: addClothes(long,Clothes)
+	{PUT [/clothes/{idClothes}/players/{idPlayers}]}: modifyClothes(long,long,Clothes)
+	{GET [/clothes]}: getClothes(String,String,String)
+	{GET [/clothes/{id}]}: getClothesId(long)
+2023-04-18 16:41:12,194 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	c.s.h.c.MatchController:
+	{GET [/matches/{id}]}: findById(long)
+	{PUT [/matches/{idMatches}/teams/{idTeams}]}: modifyMatch(long,long,Match)
+	{POST [/teams/{teamId}/matches]}: addMatch(long,Match)
+	{DELETE [/matches/{id}]}: deleteMatch(long)
+	{GET [/matches]}: getMatches(String,String,String)
+2023-04-18 16:41:12,197 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	c.s.h.c.PlayerController:
+	{POST [/users/{userId}/players]}: addPlayer(long,Player)
+	{DELETE [/players/{id}]}: deletePlayer(long)
+	{PUT [/players/{idPlayer}/users/{idUser}]}: modifyPlayer(long,long,Player)
+	{GET [/players]}: getPlayers(String,String,String)
+	{GET [/players/{id}]}: getPlayerId(long)
+	{GET [/player]}: getPlayerSexOrder(String,String)
+2023-04-18 16:41:12,200 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	c.s.h.c.TeamController:
+	{GET [/teams/{id}]}: findById(long)
+	{GET [/team]}: getTeamByUser(String,String)
+	{DELETE [/teams/{id}]}: deleteTeam(long)
+	{GET [/teams]}: getTeams(String,String,String)
+	{POST [/users/{userId}/teams]}: addTeam(long,Team)
+	{PUT [/teams/{idTeam}/users/{idUser}]}: modifyTeam(long,long,Team)
+2023-04-18 16:41:12,203 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	c.s.h.c.UserController:
+	{POST [/users]}: addUser(User)
+	{PUT [/users/{id}]}: modifyUser(long,User)
+	{DELETE [/users/{id}]}: deleteUser(long)
+	{GET [/users]}: getUsers(String,String,String)
+	{GET [/users/{id}]}: getUserId(long)
+	{GET [/users/username/{username}]}: getUser(String)
+2023-04-18 16:41:12,207 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+2023-04-18 16:41:12,226 DEBUG org.springframework.web.servlet.handler.AbstractDetectingUrlHandlerMapping [main] 'beanNameHandlerMapping' {}
+2023-04-18 16:41:12,251 DEBUG org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [main] 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+2023-04-18 16:41:12,457 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.RepositoryController:
+	{OPTIONS [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForRepositories()
+	{HEAD [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForRepositories()
+	{GET [/ || ], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: listRepositories()
+2023-04-18 16:41:12,463 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.RepositoryEntityController:
+	{PATCH [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: patchItemResource(RootResourceInformation,PersistentEntityResource,Serializable,PersistentEntityResourceAssembler,ETag,String)
+	{PUT [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: putItemResource(RootResourceInformation,PersistentEntityResource,Serializable,PersistentEntityResourceAssembler,ETag,String)
+	{GET [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: getItemResource(RootResourceInformation,Serializable,PersistentEntityResourceAssembler,HttpHeaders)
+	{DELETE [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deleteItemResource(RootResourceInformation,Serializable,ETag)
+	{HEAD [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForItemResource(RootResourceInformation,Serializable,PersistentEntityResourceAssembler)
+	{GET [/{repository}], produces [application/x-spring-data-compact+json || text/uri-list]}: getCollectionResourceCompact(RootResourceInformation,DefaultedPageable,Sort,PersistentEntityResourceAssembler)
+	{OPTIONS [/{repository}/{id}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForItemResource(RootResourceInformation)
+	{HEAD [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headCollectionResource(RootResourceInformation,DefaultedPageable)
+	{POST [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: postCollectionResource(RootResourceInformation,PersistentEntityResource,PersistentEntityResourceAssembler,String)
+	{OPTIONS [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForCollectionResource(RootResourceInformation)
+	{GET [/{repository}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: getCollectionResource(RootResourceInformation,DefaultedPageable,Sort,PersistentEntityResourceAssembler)
+2023-04-18 16:41:12,469 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.RepositoryPropertyReferenceController:
+	{[PATCH, PUT, POST] [/{repository}/{id}/{property}], consumes [application/json || application/x-spring-data-compact+json || text/uri-list], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: createPropertyReference(RootResourceInformation,HttpMethod,CollectionModel,Serializable,String)
+	{GET [/{repository}/{id}/{property}/{propertyId}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: followPropertyReference(RootResourceInformation,Serializable,String,String,PersistentEntityResourceAssembler)
+	{GET [/{repository}/{id}/{property}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: followPropertyReference(RootResourceInformation,Serializable,String,PersistentEntityResourceAssembler)
+	{DELETE [/{repository}/{id}/{property}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deletePropertyReference(RootResourceInformation,Serializable,String)
+	{GET [/{repository}/{id}/{property}], produces [text/uri-list]}: followPropertyReferenceCompact(RootResourceInformation,Serializable,String,HttpHeaders,PersistentEntityResourceAssembler)
+	{DELETE [/{repository}/{id}/{property}/{propertyId}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: deletePropertyReferenceId(RootResourceInformation,Serializable,String,String)
+2023-04-18 16:41:12,477 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.RepositorySearchController:
+	{OPTIONS [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForSearches(RootResourceInformation)
+	{GET [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: listSearches(RootResourceInformation)
+	{HEAD [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForSearch(RootResourceInformation,String)
+	{HEAD [/{repository}/search], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: headForSearches(RootResourceInformation)
+	{OPTIONS [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: optionsForSearch(RootResourceInformation,String)
+	{GET [/{repository}/search/{search}], produces [application/hal+json || application/json || application/prs.hal-forms+json]}: executeSearch(RootResourceInformation,MultiValueMap,String,DefaultedPageable,Sort,PersistentEntityResourceAssembler,HttpHeaders)
+	{GET [/{repository}/search/{search}], produces [application/x-spring-data-compact+json]}: executeSearchCompact(RootResourceInformation,HttpHeaders,MultiValueMap,String,String,DefaultedPageable,Sort,PersistentEntityResourceAssembler)
+2023-04-18 16:41:12,483 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.RepositorySchemaController:
+	{GET [/profile/{repository}], produces [application/schema+json]}: schema(RootResourceInformation)
+2023-04-18 16:41:12,485 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.a.AlpsController:
+	{GET [/profile/{repository}], produces [application/alps+json || */*]}: descriptor(RootResourceInformation)
+	{OPTIONS [/profile/{repository}], produces [application/alps+json]}: alpsOptions()
+2023-04-18 16:41:12,486 DEBUG org.springframework.web.servlet.handler.AbstractHandlerMethodMapping [main] 
+	o.s.d.r.w.ProfileController:
+	{OPTIONS [/profile]}: profileOptions()
+	{GET [/profile]}: listAllFormsOfMetadata()
+2023-04-18 16:41:12,559 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-04-18 16:41:12,596 INFO org.springframework.boot.StartupInfoLogger [main] Started HappDeporteApplication in 5.49 seconds (JVM running for 6.12)
+2023-04-18 16:41:40,432 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:41:40,433 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2023-04-18 16:42:10,447 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:42:10,447 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2023-04-18 16:42:40,462 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:42:40,462 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2023-04-18 16:43:10,478 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:43:10,478 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2023-04-18 16:43:40,480 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:43:40,480 DEBUG com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2023-04-18 16:43:58,300 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-04-18 16:43:58,303 DEBUG com.zaxxer.hikari.pool.HikariPool [SpringApplicationShutdownHook] HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+2023-04-18 16:43:58,326 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn0: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,333 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn1: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,334 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn2: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,335 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn3: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,336 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn4: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,337 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn5: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,337 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn6: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,338 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn7: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,338 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn8: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,339 DEBUG com.zaxxer.hikari.pool.PoolBase [HikariPool-1 connection closer] HikariPool-1 - Closing connection conn9: url=jdbc:h2:file:H:/BBDD/happdeporte.db user=SA: (connection evicted)
+2023-04-18 16:43:58,339 DEBUG com.zaxxer.hikari.pool.HikariPool [SpringApplicationShutdownHook] HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+2023-04-18 16:43:58,340 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
