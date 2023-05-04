@@ -1,0 +1,1072 @@
+{
+	"info": {
+		"_postman_id": "480f8e41-72c4-4447-b298-a563fcc80a33",
+		"name": "HappDeporte",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24068761"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Ger13\",\r\n    \"pass\": \"123456\",\r\n    \"rol\": \"user\",\r\n    \"coach\": true,\r\n    \"name\" : \"German\",\r\n    \"surname\" : \"Rodriguez Serrano\",\r\n    \"address\" : \"xx\",\r\n    \"mail\" : \"grs@grs.com\",\r\n    \"phone\" : \"666666666\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"username\": \"Ger1313\",\r\n        \"pass\": \"123456\",\r\n        \"rol\": \"admin\",\r\n        \"coach\": true,\r\n        \"name\": \"German\",\r\n        \"surname\": \"Rodriguez Serrano\",\r\n        \"address\": \"Puerto de Alazores\",\r\n        \"mail\" : \"grs@grs.com\",\r\n        \"phone\": \"666666666\"       \r\n    }\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user/{username}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/username/Ger134",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"username",
+								"Ger134"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user?name&rol&cocah",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users?name=German&rol=user&coach=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "German",
+									"description": "Nombre"
+								},
+								{
+									"key": "rol",
+									"value": "admin",
+									"description": "Administrador",
+									"disabled": true
+								},
+								{
+									"key": "rol",
+									"value": "user",
+									"description": "User"
+								},
+								{
+									"key": "rol",
+									"value": "coach",
+									"description": "Entrenador",
+									"disabled": true
+								},
+								{
+									"key": "coach",
+									"value": "true",
+									"description": "Es Entrenador"
+								},
+								{
+									"key": "coach",
+									"value": "false",
+									"description": "No es entrenador",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Player",
+			"item": [
+				{
+					"name": "players no usar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adriana4\",\r\n    \"surname\": \"Rodriguez Dominguez\",\r\n    \"dni\": \"50979686W\",\r\n    \"birthDate\" : 221120218,\r\n    \"allergy\" : \"\",\r\n    \"dorsal\" : 3,\r\n    \"sex\" : \"M\",\r\n    \"active\" :  true,\r\n    \"userInPlayer\" : \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/players",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players user url",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Adriana\",\r\n    \"surname\": \"Rodriguez Dominguez\",\r\n    \"dni\": \"50979686W\",\r\n    \"birthDate\" : \"2010-01-05\",\r\n    \"allergy\" : \"Lactosa\",\r\n    \"dorsal\" : 31,\r\n    \"sex\" : \"F\",\r\n    \"active\" :  true\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1/players",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1",
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/players/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n    \"name\": \"Cristina\",\r\n    \"surname\": \"Martinez\",\r\n    \"dni\": \"50979686W\",\r\n    \"birthDate\": \"2023-01-05\",\r\n    \"allergy\": \"Fructosa\",\r\n    \"dorsal\": 13,\r\n    \"sex\": \"F\",\r\n    \"active\": true\r\n    }\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/players/1/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players",
+								"1",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/players",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/players/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players/{active}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/players/active/false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players",
+								"active",
+								"false"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "players?userInPlayer&Active&Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/players?userInPlayer=1&name=Adriana&active=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players"
+							],
+							"query": [
+								{
+									"key": "userInPlayer",
+									"value": "1",
+									"description": "Padre del Jugador"
+								},
+								{
+									"key": "name",
+									"value": "Adriana",
+									"description": "Nombre"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Activo"
+								},
+								{
+									"key": "active",
+									"value": "false",
+									"description": "de baja",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "player NativeQuery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/player?userInPlayer=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"player"
+							],
+							"query": [
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Jugadores en activo ordenados por sexo (nativeQuery 1)",
+									"disabled": true
+								},
+								{
+									"key": "active",
+									"value": "false",
+									"description": "Jugadores de baja ordenados por sexo (nativeQuery 1)",
+									"disabled": true
+								},
+								{
+									"key": "userInPlayer",
+									"value": "2",
+									"description": "Usuarios por Jugadores Ordenados por Nombre (nativeQuery 2)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teams",
+			"item": [
+				{
+					"name": "teams no usar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Cadete\",\r\n    \"competition\": \"Moratalaz\",\r\n    \"dayTrain\" : \"Martes y Jueves\",\r\n    \"startTrain\" : \"20:00\",\r\n    \"endTrain\" : \"21:00\",\r\n    \"active\" :  true,\r\n    \"userInTeams\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams user Url",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Infantil\",\r\n    \"competition\": \"Moratalaz\",\r\n    \"dayTrain\" : \"Martes y Jueves\",\r\n    \"startTrain\" : \"20:00\",\r\n    \"endTrain\" : \"21:00\",\r\n    \"active\" :  false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1",
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teams/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category\": \"Infantil\",\r\n    \"competition\": \"Moratalaz\",\r\n    \"dayTrain\" : \"Martes y Jueves\",\r\n    \"startTrain\" : \"20:00\",\r\n    \"endTrain\" : \"21:00\",\r\n    \"active\" :  false\r\n}\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teams/1/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams",
+								"1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teams/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams?category&competition&active",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/teams/?category=Cadete&competition=Moratalaz&active=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams",
+								""
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Cadete",
+									"description": "Categoria del equipo"
+								},
+								{
+									"key": "competition",
+									"value": "Moratalaz",
+									"description": "Competición"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Equipo en activo"
+								},
+								{
+									"key": "active",
+									"value": "false",
+									"description": "Equipo de baja",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teams?NativeQuery",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/team/?userInTeam=1&active=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"team",
+								""
+							],
+							"query": [
+								{
+									"key": "userInTeam",
+									"value": "1",
+									"description": "Entrenadores por equipos activos ordenados por categoria (nativeQuery 3)"
+								},
+								{
+									"key": "active",
+									"value": "true",
+									"description": "Entrenadores por equipos activos ordenados por categoria (nativeQuery 3)"
+								},
+								{
+									"key": "active",
+									"value": "false",
+									"description": "Equipo de baja",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Match",
+			"item": [
+				{
+					"name": "matches no usar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teamB\": \"Loreto CB\",\r\n    \"markerA\": 55,\r\n    \"markerB\" : 40,\r\n    \"analysis\" : \"Gran Victoria del Equipo Femenino\",\r\n    \"location\" : \"\",\r\n    \"dateMatch\" : 20221209,\r\n    \"hourMatch\" : \"17:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/matches",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches team url id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"teamB\": \"Loreto CB\",\r\n    \"markerA\": 55,\r\n    \"markerB\" : 40,\r\n    \"analysis\" : \"Gran Victoria del Equipo Femenino\",\r\n    \"location\" : \"\",\r\n    \"dateMatch\" : \"2023-01-05\",\r\n    \"hourMatch\" : \"21:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/teams/1/matches",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"teams",
+								"1",
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/matches/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n    \"teamB\": \"Loreto B\",\r\n    \"markerA\": 65,\r\n    \"markerB\" : 40,\r\n    \"analysis\" : \"Gran Victoria del Equipo Femenino\",\r\n    \"location\" : \"Pabellon Moratalaz\",\r\n    \"dateMatch\" : \"2023-01-05\",\r\n    \"hourMatch\" : \"22:00\"\r\n    }\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/matches/1/teams/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches",
+								"1",
+								"teams",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/matches",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/matches/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "matches?teamId&dateMatch&houtDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/matches?teamInMatch=1&dateMatch=2023-01-05&hourMatch=21:00:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"matches"
+							],
+							"query": [
+								{
+									"key": "teamInMatch",
+									"value": "1",
+									"description": "Id de Equipo"
+								},
+								{
+									"key": "dateMatch",
+									"value": "2023-01-05",
+									"description": "dia del partido"
+								},
+								{
+									"key": "hourMatch",
+									"value": "21:00:00",
+									"description": "hora del partido"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clothes",
+			"item": [
+				{
+					"name": "clothes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"equipment\": true,\r\n    \"sweatshirt\": false,\r\n    \"sizeEquipment\": \"XL\",\r\n    \"sizeSweatshirt\" : \"\",\r\n    \"serygrafhy\" : \"Rodriguez\",\r\n    \"dorsal\" : 88\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes player url id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"equipment\": true,\r\n    \"sweatshirt\": false,\r\n    \"sizeEquipment\": \"XL\",\r\n    \"sizeSweatshirt\" : \"\",\r\n    \"serygrafhy\" : \"Rodriguez\",\r\n    \"dorsal\" : 69\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/players/1/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"players",
+								"1",
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n    \"equipment\": true,\r\n    \"sweatshirt\": false,\r\n    \"sizeEquipment\": \"L\",\r\n    \"sizeSweatshirt\" : \"\",\r\n    \"serygrafhy\" : \"Cambiado2\",\r\n    \"dorsal\" : 69\r\n    }\r\n    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes/1/players/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"1",
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clothes?playerInClothes&sizeEquipment&dorsal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes?playerInClothes=1&sizeEquipment=XL&dorsal=99",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							],
+							"query": [
+								{
+									"key": "playerInClothes",
+									"value": "1",
+									"description": "Jugador"
+								},
+								{
+									"key": "sizeEquipment",
+									"value": "XL",
+									"description": "Talla"
+								},
+								{
+									"key": "dorsal",
+									"value": "99",
+									"description": "Dorsal"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

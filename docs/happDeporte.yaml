@@ -1,0 +1,1484 @@
+openapi: 3.0.1
+#Dentro de la web Swagger buscar basic structure -> guía a seguir para crear la semilla
+#El tabulado es el que marca el inicio y el fin del cada parte del código
+#Muy importante tabular bien.
+#https://editor.swagger.io/
+#https://swagger.io/docs/specification/2-0/basic-structure/
+
+info:
+  description: |-
+    API para la gestión de club deportivos
+    
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+
+  title: HappDeporte API
+  contact:
+    name: Germán Rodríguez Serrano
+    email: a26318@svalero.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: "1.0"
+
+# tags -> Para catalogar los endpoint de la API
+servers:
+  - url: https://localhost:8080 #URL basic de la Api, la que todas las URL van a tener
+    description: HappDeporte
+
+tags:
+  - name: User
+    description: Operaciones sobre los Usuarios
+  - name: Player
+    description: Operaciones sobre los Jugadores
+  - name: Team
+    description: Operacions sobre los Equipos
+  - name: Match
+    description: Operaciones sobre os Partidos
+  - name: Clothes
+    description: Operaciones sobre los pedidos de Ropa
+
+paths: # Rutas operaciones que tenemos por cada path Ej: /users
+  # operaciones sobre /users
+  /users:
+    post:
+      tags:
+        - User
+      # sumary: Alta de Usuarios
+      description: Registro de un nuevo usuario para poder usar  la aplicación
+      operationId: postUser # Id de operación tiene que ser único Ej: getUserByPlayer getALl getById
+      requestBody: # Para indicarle que lleva un cuerpo de entrada para dar de alta
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserIn'
+      responses:
+        '201':
+          description: Usuario creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - User
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Usuarios
+      description: Obtiene la información de todos los usuarios del sistema. Permite filtros como name, rol y coach
+      operationId: getUser
+      parameters:
+        - $ref: '#/components/parameters/Name'
+        - $ref: '#/components/parameters/Rol'
+        - $ref: '#/components/parameters/Coach'
+      responses:
+        '200':
+          description: Se devuelve el listado de usuarios correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/User'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+
+  '/users/{userId}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/UserId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  /users/{userId} aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/UserId'
+
+    delete:
+      tags:
+        - User
+      summary: Dar de baja un usuario
+      description: Operación de borrado de usuarios por id
+      operationId: deleteUserId
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - User
+      summary: Modificación de usuario
+      description: Modificiación de un usuario por id
+      operationId: modifyUserId
+      requestBody:
+        description: Los datos nuevos de un usuario, aqui si podemos asignar los campos coach y rol
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPut'
+      responses:
+        '201':
+          description: Usuario creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - User
+      summary: Consulta de usuario por Id
+      description: Consulta de usuario por su identificador único
+      operationId: getUserId
+      responses:
+        '200':
+          description: Se devuelve la información de un usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/users/username/{username}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/UserId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  /users/{userId} aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/Username'
+
+    get:
+      tags:
+        - User
+      summary: Busqueda por Username
+      description: Operación de buscar un usuario por username que es único
+      operationId: getUsername
+      responses:
+        '200':
+          description: Se devuelve la información del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /players':
+    get:
+      tags:
+        - Player
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Jugadores
+      description: Obtiene la información de todos los jugadores del sistema. Permite filtros como name, rol y coach
+      operationId: getPlayer
+      parameters:
+        - $ref: '#/components/parameters/UserInPlayer'
+        - $ref: '#/components/parameters/Name'
+        - $ref: '#/components/parameters/Active'
+      responses:
+        '200':
+          description: Se devuelve el listado de jugadores correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/Player'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+  '/users/{userId}/players':
+    parameters:
+      #Marcamos la referencia a /components/parameters/UserId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  /users/{userId} aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/UserId'
+
+    post:
+      tags:
+        - Player
+#      sumary: Alta de Jugadores
+      description: Registro de un nuevo jugador asociado a un user existente (Padre, Madre o Tutor)
+      operationId: postPlayer # Id de operación tiene que ser único
+      requestBody: # Para indicarle que lleva un cuerpo de entrada para dar de alta
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerIn'
+      responses:
+        '201':
+          description: Jugador creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/players/{playerId}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/PlayerId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  /players/{playerId} aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/PlayerId'
+
+    delete:
+      tags:
+        - Player
+      summary: Dar de baja un jugador
+      description: Operación de borrado de Judagor por id, no se borra en cascada. El usuario asociado permanece
+      operationId: deletePlayerId
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - Player
+      summary: Modificación de jugadores
+      description: Modificiación de un jugador por id
+      operationId: modifyPlayerId
+      requestBody:
+        description: Los datos nuevos de un jugador
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlayerPut'
+      responses:
+        '201':
+          description: Jugador modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '400':
+          $ref: '#/components/responses/BadRequestPlayer'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Player
+      summary: Consulta de jugador por Id
+      description: Consulta de jugador por su identificador único
+      operationId: getPlayerId
+      responses:
+        '200':
+          description: Se devuelve la información del jugador
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Player'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/users/{userId}/teams':
+    parameters:
+      #Marcamos la referencia a /components/parameters/UserId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  users/{userId}/teams aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/UserInTeam'
+      - $ref: '#/components/parameters/ActiveTeam'
+
+    post:
+      tags:
+        - Team
+      #      sumary: Alta de Equipos
+      description: Registro de un nuevo equipo asociado a un user (El user es el Entrenador asociado)
+      operationId: postTeam # Id de operación tiene que ser único
+      requestBody: # Para indicarle que lleva un cuerpo de entrada para dar de alta
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamIn'
+      responses:
+        '201':
+          description: Equipo creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '400':
+          $ref: '#/components/responses/BadRequestTeam'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Team
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Equipos
+      description: Obtiene listado de entrenadores por equipo activo o de baja, ordenados por categoría
+      operationId: getTeamUserIdActive
+      parameters:
+        - $ref: '#/components/parameters/UserInTeam'
+        - $ref: '#/components/parameters/ActiveTeam'
+      responses:
+        '200':
+          description: Se devuelve el listado de equipos correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/Team'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+  '/teams/{id}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/TeamId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/teams aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/TeamId'
+
+    delete:
+      tags:
+        - Team
+      summary: Dar de baja un Equipo
+      description: Operación de borrado de Equipo por id, no se borra en cascada. El usuario asociado permanece
+      operationId: deleteTeamId
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Team
+      summary: Consulta de equipo por Id
+      description: Consulta de equipo por su identificador único
+      operationId: getTeamId
+      responses:
+        '200':
+          description: Se devuelve la información de un equipo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/teams/{idTeam}/users/{idUser}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/TeamId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/teams aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/TeamId'
+      - $ref: '#/components/parameters/UserId'
+
+    put:
+      tags:
+        - Team
+      summary: Modificación de equipos
+      description: Modificación de un equipo por id
+      operationId: modifyTeamId
+      requestBody:
+        description: Los datos nuevos de un equipo
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamPut'
+      responses:
+        '201':
+          description: Equipo modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+        '400':
+          $ref: '#/components/responses/BadRequestTeam'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/teams':
+    get:
+      tags:
+        - Team
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Equipos
+      description: Obtiene la información de todos los equipos del sistema. Permite filtros como category, competition y active
+      operationId: getTeam
+      parameters:
+        - $ref: '#/components/parameters/Category'
+        - $ref: '#/components/parameters/Competition'
+        - $ref: '#/components/parameters/ActiveTeam'
+      responses:
+        '200':
+          description: Se devuelve el listado de equipos correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/Team'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+  '/teams/{teamId}/matches':
+    parameters:
+      #Marcamos la referencia a /components/parameters/teamInMatch donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/matches aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/TeamInMatch'
+
+    post:
+      tags:
+        - Match
+      #      sumary: Alta de Partidos
+      description: Registro de un nuevo partido asociado a un equipo
+      operationId: postMatch # Id de operación tiene que ser único
+      requestBody: # Para indicarle que lleva un cuerpo de entrada para dar de alta
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchIn'
+      responses:
+        '201':
+          description: Partido creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '400':
+          $ref: '#/components/responses/BadRequestMatch'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/matches/{id}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/TeamId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  matches/{matId}/teams aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/MatchId'
+
+    delete:
+      tags:
+        - Match
+      summary: Dar de baja un Partido
+      description: Operación de borrado de partido por id, no se borra en cascada. El equipo asociado permanece
+      operationId: deleteTeamId
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Match
+      summary: Consulta de partido por Id
+      description: Consulta de partido por su identificador único
+      operationId: getMatchId
+      responses:
+        '200':
+          description: Se devuelve la información de un partido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/matches/{idMatches}/teams/{idTeams}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/teamInMatch donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/matches aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/MatchId'
+      - $ref: '#/components/parameters/TeamInMatch'
+
+    put:
+      tags:
+        - Match
+      summary: Modificación de partidos
+      description: Modificación de un partido por id
+      operationId: modifyMatchId
+      requestBody:
+        description: Los datos nuevos de un partido
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchPut'
+      responses:
+        '201':
+          description: Partido modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '400':
+          $ref: '#/components/responses/BadRequestMatch'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/matches':
+    get:
+      tags:
+        - Match
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Partidos
+      description: Obtiene la información de todos los partidos del sistema. Permite filtros como equipo local, fecha y hora
+      operationId: getMatch
+      parameters:
+        - $ref: '#/components/parameters/TeamInMatchQuery'
+        - $ref: '#/components/parameters/DateMatch'
+        - $ref: '#/components/parameters/HourMatch'
+      responses:
+        '200':
+          description: Se devuelve el listado de los partidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/Match'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+  '/players/{playerId}/clothes"':
+    parameters:
+      #Marcamos la referencia a /components/parameters/teamInMatch donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/matches aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/PlayerId'
+
+    post:
+      tags:
+        - Clothes
+      #      sumary: Alta de Partidos
+      description: Registro de un nuevo pedido de ropa asociado a un jugador
+      operationId: postClothes # Id de operación tiene que ser único
+      requestBody: # Para indicarle que lleva un cuerpo de entrada para dar de alta
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClothesIn'
+      responses:
+        '201':
+          description: Pedido creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clothes'
+        '400':
+          $ref: '#/components/responses/BadRequestClothes'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/clothes/{id}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/TeamId donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  matches/{matId}/teams aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/ClothesId'
+
+    delete:
+      tags:
+        - Clothes
+      summary: Dar de baja un Pedido
+      description: Operación de borrado de pedido por id, no se borra en cascada. El jugador asociado permanece
+      operationId: deleteClothesId
+      responses:
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags:
+        - Clothes
+      summary: Lista por Id
+      description: Listado de un pedido por su número de id
+      operationId: getClothesId
+      responses:
+        '200':
+          description: Se devuelve la información de un pedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clothes'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/clothes/{idClothes}/players/{idPlayers}':
+    parameters:
+      #Marcamos la referencia a /components/parameters/teamInMatch donde hemos definido los datos y así podemos reutilizarlos
+      #Para los que usen el Path  teams/{teamId}/matches aplica el $ref así ahorramos código repetido
+      - $ref: '#/components/parameters/ClothesId'
+      - $ref: '#/components/parameters/PlayerId'
+
+    put:
+      tags:
+        - Clothes
+      summary: Modificación de pedido de ropa por usuario
+      description: Modificación de un ropa por id y el id del usuario asociado
+      operationId: modifyClothesId
+      requestBody:
+        description: Los datos nuevos de un pedido
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClothesPut'
+      responses:
+        '201':
+          description: Pedido Ropa modificado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Clothes'
+        '400':
+          $ref: '#/components/responses/BadRequestClothes'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  '/clothes':
+    get:
+      tags:
+        - Clothes
+        # - Lines #Ejemplo no es bueno que este duplicado pero podría ir en ambos path
+      summary: Listado de Pedidos de Ropa
+      description: Obtiene la información de todos los pedidos del sistema. Permite filtros como jugador que tiene pedido, talla de la equipación y dorsal
+      operationId: getClothes
+      parameters:
+        - $ref: '#/components/parameters/PlayerInClothesQuery'
+        - $ref: '#/components/parameters/SizeEquipment'
+        - $ref: '#/components/parameters/Dorsal'
+      responses:
+        '200':
+          description: Se devuelve el listado de los pedidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  #Usamos la ruta schemas para que cargue el schema. Se consulta en Structure->Compoments
+                  #nos ahorramos código, es como llamar a un método
+                  $ref: '#/components/schemas/Clothes'
+        '500':
+          #Usamos la ruta responses para que cargue la definión común para este tipo de respuesta
+          #nos ahorramos código, es como llamar a un método
+          $ref: '#/components/responses/InternalServerError'
+
+
+  #Podemos crear components para reutilizarlps como contenido dentro de las respuestas
+  #Panel izquierdo -> Structure -> Components -> Components
+components:
+  schemas:
+    UserIn:
+      type: object
+      properties:
+        username:
+          type: string
+          format: string
+          description: Nombre de usuario, se realiza validaciones para que no sea null, campo en blanco, longuitud mínima de carácteres 3 y máxima 9
+          example: ger13
+        pass:
+          type: string
+          format: string
+          description: Contraseña de usuario, se realiza validaciones para que no sea null, campo en blanco, longuitud mínima de carácteres 6 y máxima 16
+          example: Acces0@Dat0S
+        name:
+          type: string
+          format: string
+          description: Nombre del usuario que se registra
+          example: German
+        surname:
+          type: string
+          format: string
+          description: Apellidos del usuario que se registra
+          example: Rodriguez Serrano
+        address:
+          type: string
+          format: string
+          description: Direccion del usuario que se registra
+          example: Calle Tacona, 23
+        phone:
+          type: string
+          format: string
+          description: Número de teléfono del usuario, se realiza validaciones para que no sea null, campo en blanco, longuitud mínima de carácteres 9
+          example: 666 66 66 66
+
+    User:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: number
+              format: long
+              description: Id autonúmerico como clave primaria de la BBDD
+              example: 13
+        - $ref: '#/components/schemas/UserIn'
+        - $ref: '#/components/schemas/UserPut'
+
+    UserPut:
+      allOf:
+        - type: object
+          properties:
+            rol:
+              type: string
+              format: string
+              description: Permisos de acceso a la API
+              example: coach
+            coach:
+              type: boolean
+              format: boolean
+              description: Para indicar si es o no entrenador de un equipo
+              example: true
+        - $ref: '#/components/schemas/UserIn'
+
+    PlayerIn:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          description: Nombre del jugador, se realiza validaciones para que no sea null, campo en blanco
+          example: Adriana
+        surname:
+          type: string
+          format: string
+          description: Apellidos del jugador, se realiza validaciones para que no sea null, campo en blanco
+          example: Rodríguez Domínguez
+        dni:
+          type: string
+          format: string
+          description: Dni del jugador, se realiza validaciones para que no sea null, campo en blanco
+          example: 50979686W
+        birthDate:
+          type: Date
+          format: LocalDate
+          description: Fecha de Nacimiento del Jugador
+          example: 2010-01-05
+        allergy:
+          type: string
+          format: string
+          description: Alergias o Intolerancias que tiene el jugador
+          example: lactosa y fructosa
+        dorsal:
+          type: number
+          format: int
+          description: Dorsal de la equipación del jugador
+          example: 8
+        sex:
+          type: string
+          format: char
+          description: Masculino o Femenino
+          example: F
+        active:
+          type: boolean
+          format: boolean
+          description: Jugador en activo o no
+
+    Player:
+      allOf:
+        - $ref: '#/components/schemas/PlayerIn'
+        - type: object
+          properties:
+            id:
+              type: number
+              format: long
+              description: Id autonúmerico como clave primaria de la BBDD
+              example: 13
+            userInPlayer:
+              $ref: '#/components/schemas/User'
+#          - $ref: '#/components/schemas/UserPut'
+
+    PlayerPut:
+      allOf:
+        - $ref: '#/components/schemas/PlayerIn'
+
+    TeamIn:
+      type: object
+      properties:
+        category:
+          type: string
+          format: string
+          description: Categoria en la que juega el equipo, se realiza validaciones para que no sea null, campo en blanco
+          example: Benjamin
+        competition:
+          type: string
+          format: string
+          description: Competición en la que juega, se realiza validaciones para que no sea null, campo en blanco
+          example: Moratalaz
+        cuota:
+          type: number
+          format: double
+          description: Cuota que cuesta jugar en el equipo
+          example: 300
+        dayTrain:
+          type: string
+          format: string
+          description: Dia que realiza entrenamientos
+          example: Martes y Jueves
+        startTrain:
+          type: LocalTime
+          format: LocalTime
+          description: Hora de comienzo del entrenamiento
+          example: 19:15
+        endTrain:
+          type: LocalTime
+          format: LocalTime
+          description: Hora de finalización del entrenamiento
+          example: 20:15
+        active:
+          type: boolean
+          format: boolean
+          description: Equipo en activo
+
+    Team:
+      allOf:
+        - $ref: '#/components/schemas/TeamIn'
+        - type: object
+          properties:
+            id:
+              type: number
+              format: long
+              description: Id autonúmerico como clave primaria de la BBDD
+              example: 2
+            user:
+              $ref: '#/components/schemas/User'
+#              $ref: '#/components/schemas/UserPut'
+
+    TeamPut:
+      allOf:
+        - $ref: '#/components/schemas/TeamIn'
+#        - type: object
+#          properties:
+#            userInTeam:
+#              type: number
+#              format: long
+#              description: Id autonúmerico como clave primaria de la BBDD
+#              example: 13
+
+    MatchIn:
+      type: object
+      properties:
+        teamB:
+          type: string
+          format: string
+          description: Nombre del equipo contrario
+          example: Loreto CB
+        markerA:
+          type: number
+          format: int
+          description: Marcador del equipo del club
+          example: 55
+        markerB:
+          type: number
+          format: int
+          description: Marcador del equipo contrario (teamB)
+          example: 44
+        analysis:
+          type: string
+          format: string
+          description: Analisis del partido
+          example: Gran Victoria del Equipo Femenino
+        location:
+          type: string
+          format: string
+          description: Lugar del partido
+          example: Pabellon Moratalaz
+        dateMatch:
+          type: LocalDate
+          format: LocalDate
+          description: Día del partido
+          example: 2023-01-05
+        hourMatch:
+          type: LocalTime
+          format: LocalTime
+          description: Hora del partido
+          example: 22:00:00
+
+    Match:
+      allOf:
+        - $ref: '#/components/schemas/MatchIn'
+        - type: object
+          properties:
+            id:
+              type: number
+              format: long
+              description: Id autonúmerico como clave primaria de la BBDD
+              example: 2
+            team:
+              $ref: '#/components/schemas/Team'
+  #          - $ref: '#/components/schemas/UserPut'
+
+    MatchPut:
+      allOf:
+        - $ref: '#/components/schemas/MatchIn'
+
+    ClothesIn:
+      type: object
+      properties:
+        equipment:
+          type: boolean
+          format: boolean
+          description: Quiere el uniforme de juego "si o no"
+          example: true
+        sweatshirt:
+          type: boolean
+          format: boolean
+          description: Quiere la sudadera del club "si o no"
+          example: true
+        sizeEquipment:
+          type: string
+          format: string
+          description: Talla para el uniforme
+          example: XL
+        sizeSweatshirt:
+          type: string
+          format: string
+          description: Talla para la sudadera
+          example: XL
+        serygrafhy:
+          type: string
+          format: string
+          description: Serigrafía a poner en la equipación
+          example: Rodríguez
+        dorsal:
+          type: number
+          format: int
+          description: Número que usa el jugador
+          example: 13
+        priceEquipment:
+          type: number
+          format: double
+          description: Precio de equipación
+          example: 55.50
+        priceSweatshirt:
+          type: number
+          format: double
+          description: Precio de la sudadera
+          example: 25
+
+    Clothes:
+      allOf:
+        - $ref: '#/components/schemas/ClothesIn'
+        - type: object
+          properties:
+            id:
+              type: number
+              format: long
+              description: Id autonúmerico como clave primaria de la BBDD
+              example: 1
+            player:
+              $ref: '#/components/schemas/Player'
+    #          - $ref: '#/components/schemas/UserPut'
+
+    ClothesPut:
+      allOf:
+        - $ref: '#/components/schemas/ClothesIn'
+
+    BadRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 400
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error de validación
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorField'
+
+    ErrorField:
+      type: object
+      description: Error de validación en un campo de entrada
+      properties:
+        fieldName:
+          type: string
+          description: El campo donde se ha producido el error
+          example: username
+        message:
+          type: string
+          description: Mensaje de error asociado con el campo
+          example: El campo no puede estar el campo en blanco
+
+    BadRequestPlayer:
+      type: object
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 400
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error de validación
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorFieldPlayer'
+
+    ErrorFieldPlayer:
+      type: object
+      description: Error de validación en un campo de entrada
+      properties:
+        fieldName:
+          type: string
+          description: El campo donde se ha producido el error
+          example: dni
+        message:
+          type: string
+          description: Mensaje de error asociado con el campo
+          example: El campo no puede estar el campo en blanco
+
+    BadRequestTeam:
+      type: object
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 400
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error de validación
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorFieldTeam'
+
+    ErrorFieldTeam:
+      type: object
+      description: Error de validación en un campo de entrada
+      properties:
+        fieldName:
+          type: string
+          description: El campo donde se ha producido el error
+          example: category
+        message:
+          type: string
+          description: Mensaje de error asociado con el campo
+          example: El campo no puede estar el campo en blanco
+
+    BadRequestMatch:
+      type: object
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 400
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error de validación
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorFieldMatch'
+
+    ErrorFieldMatch:
+      type: object
+      description: Error de validación en un campo de entrada
+      properties:
+        fieldName:
+          type: LocalDate
+          description: El campo donde se ha producido el error
+          example: dateMatch
+        message:
+          type: string
+          description: Mensaje de error asociado con el campo
+          example: El campo no puede estar el campo en blanco
+
+    BadRequestClothes:
+      type: object
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 400
+        message:
+          type: string
+          description: Mensaje de error
+          example: Error de validación
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorFieldClothes'
+
+    ErrorFieldClothes:
+      type: object
+      description: Error de validación en un campo de entrada
+      properties:
+        fieldName:
+          type: int
+          description: El campo donde se ha producido el error
+          example: 13
+        message:
+          type: string
+          description: Mensaje de error asociado con el campo
+          example: Solo se permiten números entre 1 y 99
+
+    NotFound:
+      type: object
+      description: Objeto no encontrado
+      properties:
+        code:
+          type: string
+          description: código de estado
+          example: 404
+        message:
+          type: string
+          description: Mensaje de error
+          example: Not found
+
+    InternalServerError:
+      type: object
+      description: Error Interno de la API
+      properties:
+        code:
+          type: string
+          description: Código de estado
+          example: 500
+        message:
+          type: string
+          description: Mensaje de error
+          example: Internal Server Error
+
+    #Podemos crear respuestas para reutilizarlas y no tener que estar escribiendo lo mismo constantemente
+    #Panel izquierdo -> Structure -> Components -> Responses
+  responses:
+    NoContent:
+      description: No Content
+
+    BadRequest:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequest'
+
+    BadRequestPlayer:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestPlayer'
+
+    BadRequestTeam:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestTeam'
+
+    BadRequestMatch:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestMatch'
+
+    BadRequestClothes:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestClothes'
+
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFound'
+
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalServerError'
+
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      description: Identificador del Usuario
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 13
+    Username:
+      name: username
+      in: path
+      description: Nombre de Usuario
+      required: true
+      schema:
+        type: string
+        format: string
+        example: Ger13
+    Name:
+      name: name
+      in: query #@RequestParam: no forma parte de la URL, se carga por "?" como opción, es un "WHERE".
+      description: Filtrar por el nombre introducido
+      required: false
+      schema:
+        type: string
+        format: string
+        example: german
+    Rol:
+      name: rol
+      in: query #@RequestParam: no forma parte de la URL, se carga por "?" como opción, es un "WHERE".
+      description: Filtrar por los permisos que tienen los usuarios asociados
+      required: false
+      schema:
+        type: string
+        format: string
+        enum: [admin, coach, user]
+        example: coach
+    Coach:
+      name: coach
+      in: query #@RequestParam: no forma parte de la URL, se carga por "?" como opción, es un "WHERE".
+      description: Filtrar por los usarios que son o no entrenadores
+      required: false
+      schema:
+        type: boolean
+        format: boolean
+        enum: [true, false]
+        example: true
+    PlayerId:
+      name: playerId
+      in: path
+      description: Identificador de un jugador
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 13
+    UserInPlayer:
+      name: userInPlayer
+      in: query
+      description: Identificador de un jugador, cuando se filtra solo por este parámetro se devuelve listado ordenado por sexo
+      required: false
+      schema:
+        type: number
+        format: long
+        example: 13
+    Active:
+      name: active
+      in: query
+      description: Filtrar por los jugadores en activo del club, cuando se filtra solo por este parámetro se devuelve listado ordenado por sexo
+      required: false
+      schema:
+        type: boolean
+        format: boolean
+        enum: [ true, false ]
+        example: true
+    ActiveTeam:
+      name: active
+      in: query
+      description: Filtrar por los equipo en activo del club
+      required: false
+      schema:
+        type: boolean
+        format: boolean
+        enum: [ true, false ]
+        example: true
+    TeamId:
+      name: teamId
+      in: path
+      description: Identificador de un equipo
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 2
+    Category:
+      name: category
+      in: query
+      description: Filtrar por la categoria a la que pertenece un equipo
+      required: false
+      schema:
+        type: string
+        format: string
+        example: Benjamín
+    Competition:
+      name: competition
+      in: query
+      description: Filtrar por la competición a la que pertenece un equipo
+      required: false
+      schema:
+        type: string
+        format: string
+        example: Moratalaz
+    UserInTeam:
+      name: userInTeam
+      in: path
+      description: Identificador de un usuario que es entrenador
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 13
+    TeamInMatch:
+      name: teamInMatch
+      in: path
+      description: Identificador de un equipo que juega un partido
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 2
+    MatchId:
+      name: matchId
+      in: path
+      description: Identificador de un partido
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 2
+    TeamInMatchQuery:
+      name: teamInMatch
+      in: query
+      description: Identificador de un equipo que juega un partido
+      required: false
+      schema:
+        type: number
+        format: long
+        example: 2
+    DateMatch:
+      name: dateMatch
+      in: query
+      description: Fecha de un partido
+      required: false
+      schema:
+        type: dateLocal
+        format: dateLocal
+        example: 2023-01-05
+    HourMatch:
+      name: hourMatch
+      in: query
+      description: Hora de un partido
+      required: false
+      schema:
+        type: timeLocal
+        format: timeLocal
+        example: 22:00:00
+    ClothesId:
+      name: clothesId
+      in: path
+      description: Identificador de un pedido
+      required: true
+      schema:
+        type: number
+        format: long
+        example: 1
+    PlayerInClothesQuery:
+      name: playerInClothes
+      in: query
+      description: Identificador de un jugador del sistema
+      required: false
+      schema:
+        type: number
+        format: long
+        example: 13
+    SizeEquipment:
+      name: sizeEquipment
+      in: query
+      description: Talla de la equipación
+      required: false
+      schema:
+        type: string
+        format: string
+        example: XL
+    Dorsal:
+      name: dorsal
+      in: query
+      description: Dorsal de un jugador del sistema
+      required: false
+      schema:
+        type: number
+        format: int
+        example: 8
+
+
+#  examples:
+#    userUnoExample:
+#      value:
+#        - $ref: '#/components/schemas/User'
+#
+#    userDosExample:
+#      value:
+#        - $ref: '#/components/schemas/UserDos'
+
+
+
+
+
+
+
