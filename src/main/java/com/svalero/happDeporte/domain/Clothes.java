@@ -59,7 +59,7 @@ public class Clothes {
      * @ManyToOne: Muchos pedidos asociados a un jugador N:1
      * @JoinColumn(name = "player_id") como queremos que se llame la tabla de la relación N:1
      */
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "player_id")
     private Player playerInClothes;
 

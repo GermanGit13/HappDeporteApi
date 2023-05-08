@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     //TODO revisar la excepción
 
     @Override
-    public User findByUsername(String username) {
+    public User findByUsername(String username) throws UserNotFoundException {
         return userRepository.findByUsername(username);
     }
 

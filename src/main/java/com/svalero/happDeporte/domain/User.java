@@ -83,8 +83,8 @@ public class User {
      * @OneToMany(mappedBy = "user"): Indicamos que ya está mapeado en la Clase Team que es donde se genera la columna con id de los usuarios
      * @JsonBackReference(value = "user_teams"): Es para cortar la recursión infinita, por el lado del usuario para que no se siga mostrando el objeto team completo. Evitar bucle infinito
      */
-    @OneToMany(mappedBy = "userInTeam")
-    @JsonBackReference(value = "user_teams")
+    @OneToMany(mappedBy = "userInTeam", cascade = CascadeType.REMOVE, orphanRemoval = false)
+    @JsonBackReference(value = "user_teams" )
     private List<Team>  teams;
 
 //    /**

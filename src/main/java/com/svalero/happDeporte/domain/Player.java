@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -58,6 +55,8 @@ public class Player {
     private String allergy;
 
     @Column
+    @Min(1)
+    @Max(99)
     private int dorsal;
 
     @Column

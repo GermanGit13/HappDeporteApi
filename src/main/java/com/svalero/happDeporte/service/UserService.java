@@ -16,7 +16,7 @@ public interface UserService {
     User modifyUser(long id, User newUser) throws UserNotFoundException, RollbackException;
     List<User> findAll();
     User findById(long id) throws UserNotFoundException;
-    User findByUsername(String username);
+    User findByUsername(String username) throws UserNotFoundException;
     List<User> findByName(String Name);
     List<User> findByNameAndRol(String name, String rol);
     List<User> findByRol(String rol);

@@ -47,16 +47,18 @@ public class Match {
     private String analysis;
 
     @Column
-    private String location;
+    private double latitude;
+    @Column
+    private double longitude;
 
     @Column(name = "date_match")
 //    @NotBlank(message = LITERAL_NOT_BLANK)
-    @NotNull(message = LITERAL_NOT_NULL)
+//    @NotNull(message = LITERAL_NOT_NULL)
     private String dateMatch;
 
     @Column(name = "hour_match")
 //    @NotBlank(message = LITERAL_NOT_BLANK)
-    @NotNull(message = LITERAL_NOT_NULL)
+//    @NotNull(message = LITERAL_NOT_NULL)
     private String hourMatch;
 
     /**

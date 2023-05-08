@@ -83,7 +83,7 @@ public class Team {
      * @OneToMany(mappedBy = "match"): Indicamos que ya está mapeado en la Clase Match que es donde se genera la columna con id de los equipos
      * @JsonBackReference(value = "team_match"): Es para cortar la recursión infinita, por el lado del equipo para que no se siga mostrando el objeto match completo. Evitar bucle infinito
      */
-    @OneToMany(mappedBy = "teamInMatch")
+    @OneToMany(mappedBy = "teamInMatch", cascade = CascadeType.REMOVE, orphanRemoval = false)
     @JsonBackReference(value = "team_match")
     private List<Match> matches;
 }
